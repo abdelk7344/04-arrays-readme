@@ -6,17 +6,13 @@ This lesson will give a deeper dive on how to create, manipulate, and retrieve d
 
 ## Objectives
 
-2. Create and populate an array.
-3. Add items to an array using different methods.
-4. Remove items from an array using different methods. 
-5. Operate on an array using the sort, reverse, and include methods. 
-6. Identify elements in an array based on their index number. 
-7. Retrieve items from an array. 
-8. Reference the Ruby documentation on arrays.
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/W0Q_AyfolRw" frameborder="0" allowfullscreen></iframe><p><a href="https://www.youtube.com/watch?v=W0Q_AyfolRw">Intro to Ruby Arrays</a></p> 
+1. Create and populate an array.
+2. Add items to an array using different methods.
+3. Remove items from an array using different methods. 
+4. Operate on an array using the sort, reverse, and include methods. 
+5. Identify elements in an array based on their index number. 
+6. Retrieve items from an array. 
+7. Reference the Ruby documentation on arrays.
 
 
 ## Creating an Array
@@ -27,13 +23,14 @@ There are a few different ways to make a new array. You can use the literal cons
 
 ```ruby
 my_array = []
+#=> []
 ```
 
 ##### The Class Constructor
 
 ```ruby
 my_array = Array.new
-#  └── []
+#=> []
 ```
 
 **Advanced:** *Don't worry about the class constructor right now. We'll learn much more about this later on. We're introducing it briefly here because you may encounter this syntax if you read through other resources you might find online.*
@@ -42,16 +39,18 @@ To make an array that isn't empty, you can separate each item, known as an eleme
 
 ```ruby
 puppies = ["bulldog", "terrier", "poodle"]
-#  └── ["bulldog", "terrier", "poodle"]
+#=> ["bulldog", "terrier", "poodle"]
 
 random_numbers = [ 2, 5, 6, 8, 30050]
-#  └── [ 2, 5, 6, 8, 30050]
+#=> [ 2, 5, 6, 8, 30050]
 
 mixed = ["this", "array", 7, 20, "has", 45, "integers", "&", "strings", 309]
-#  └── ["this", "array", 7, 20, "has", 45, "integers", "&", "strings", 309]
+#=> ["this", "array", 7, 20, "has", 45, "integers", "&", "strings", 309]
 ```
 
 It is possible to create an array that contains disparate data types. In other words, you could create an array like the one above, that stores both strings and integers. This is generally discouraged, however. It's best to keep your arrays populated with only one kind of element.
+
+You can even store arrays inside of an array (it would be called a  2-dimensional arrays).  More on that later.
 
 ## Adding Items to an Array
 
@@ -67,11 +66,11 @@ famous_cats = ["lil' bub", "grumpy cat", "Maru"]
 famous_cats << "nala cat"
 
 puts famous_cats.inspect
-# > ["lil' bub", "grumpy cat", "Maru", "nala cat"]
+#=> ["lil' bub", "grumpy cat", "Maru", "nala cat"]
 
 ```
 
-**Note:** *The* `.inspect` *method returns a string containing a human-readable representation of an object. In this case, the list of the strings held in the array.*
+**Note:** *The* `.inspect` *method returns a string containing a human-readable representation of an object. In this case, the list of the strings held in the array.* Without `.inspect`, each element in the array would get `puts`d to its own line.
 
 The shovel method (`<<`) is the preferred syntax for adding elements to an array, however you might see other methods used in examples online:
 
@@ -85,7 +84,7 @@ famous_cats = ["lil' bub", "grumpy cat", "Maru"]
 famous_cats.push("nala cat")
 
 puts famous_cats.inspect
-# > ["lil' bub", "grumpy cat", "Maru", "nala cat"]
+#=> ["lil' bub", "grumpy cat", "Maru", "nala cat"]
 
 ```
 
@@ -99,7 +98,7 @@ famous_cats = ["lil' bub", "grumpy cat", "Maru"]
 famous_cats.unshift("nala cat")
 
 puts famous_cats.inspect
-# > ["nala cat", "lil' bub", "grumpy cat", "Maru"]
+#=> ["nala cat", "lil' bub", "grumpy cat", "Maru"]
 
 ```
 
@@ -114,9 +113,9 @@ famous_cats = ["lil' bub", "grumpy cat", "Maru"]
 maru_cat = famous_cats.pop
 
 puts famous_cats.inspect 
-# > ["lil' bub", "grumpy cat"]
+#=> ["lil' bub", "grumpy cat"]
 puts maru_cat
-# > Maru
+#=> Maru
 ```
 
 ### The `.shift` Method
@@ -128,9 +127,9 @@ famous_cats = ["lil' bub", "grumpy cat", "Maru"]
 lil_bub = famous_cats.shift
 
 puts famous_cats.inspect
-# > ["grumpy cat", "Maru"]
+#=> ["grumpy cat", "Maru"]
 puts lil_bub
-# > lil' bub
+#=> lil' bub
 ```
 
 *Note:* If you want to remove items that are not at the beginning or end of an array, use the [Ruby documentation](http://docs.ruby-lang.org/en/2.0.0/Array.html#method-i-delete_at) to figure out how. 
@@ -145,7 +144,7 @@ Just like the items in our notepad lists, elements in an array are associated wi
 famous_cats = ["Cheshire Cat", "Puss in Boots", "Garfield"]
 ```
 
-The `"Cheshire Cat"` is at index `0` in the array, `"Puss in Boots"` is  a index `1`, and `"Garfield"` is at index `2`. Indexes will always be *one less* than the **count**.
+The `"Cheshire Cat"` is at index `0` in the array, `"Puss in Boots"` is  a index `1`, and `"Garfield"` is at index `2`. Notice the index of the last item is always one less than how many items are actually in the array.  To access how big an array is, you can either call `.length`, `.size`, or `.count` on your array.  They would all return `3` in this case.
 
 To access one of these items in the `famous_cats` array, we can type the name of the array immediately followed by the relevant index number wrapped in square brackets (`[]`). 
 
@@ -153,20 +152,20 @@ To access one of these items in the `famous_cats` array, we can type the name of
 famous_cats =  ["Cheshire Cat", "Puss in Boots", "Garfield"]
 
 famous_cats[1]
-#  └── "Puss in Boots"
+#=> "Puss in Boots"
 
 famous_cats[0]
-#  └── "Cheshire Cat"
+#=> "Cheshire Cat"
 
 famous_cats[2]
-#  └── "Garfield"
+#=> "Garfield"
 ```
 
 We can also access array elements by using negative index numbers. The last item of an array is considered to be stored at an index of `-1`. Let's give it a shot:
 
 ```ruby
 famous_cats[-1]
-# └── "Garfield"
+#=> "Garfield"
 ```
 
 #### Bonus: Using Methods
@@ -175,14 +174,14 @@ We can also use the `#first` method on an array to access the first element:
 
 ```ruby
 famous_cats.first
-# └── "Cheshire Cat"
+#=> "Cheshire Cat"
 ```
 
 We can use the `#last` method to access the last element:
 
 ```ruby
 famous_cats.last
-# └── "Garfield
+#=> "Garfield
 ```
 
 #### A Note on Index Numbers
@@ -193,7 +192,7 @@ Let's take a look:
 
 ```ruby
 famous_cats[3]
-#  └── nil
+#=> nil
 ```
 
 It returns `nil`!
@@ -206,15 +205,14 @@ To discover the index number of an element within an array, we can use the `.ind
 famous_cats = ["Cheshire Cat", "Puss in Boots", "Garfield"]
 
 famous_cats.index("Puss in Boots")
-#  └── 1
+#=> 1
 
 famous_cats.index("Maru")
-#  └── nil
+#=> nil
 ```
 
 This is not an operation you will perform very often. Arrays are used to store data and usually you will use the index number of an item to access it, not the other way around. 
 
+## Resources
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/array-readme' title='Basic Arrays: Creating, Retrieving, Updating and Deleting'>Basic Arrays: Creating, Retrieving, Updating and Deleting</a> on Learn.co and start learning to code for free.</p>
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/array-readme'>Using Arrays</a> on Learn.co and start learning to code for free.</p>
+[Video](https://www.youtube.com/embed/W0Q_AyfolRw)
